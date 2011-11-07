@@ -1,0 +1,35 @@
+Source: keyczar
+Section: devel
+Priority: optional
+XS-Python-Version: >= 2.5
+Maintainer: Brandon Philips <brandon.philips@rackspace.com>
+Uploaders: Brandon Philips <brandon.philips@rackspace.com>
+Build-Depends: debhelper, python (>= 2.5), python-support, python-dev, zlib1g-dev, swig1.3, libssl-dev
+Standards-Version: 3.8.4
+Homepage: http://www.keyczar.org/
+Vcs-Git: git://code.google.com/p/keyczar/
+
+Package: libkeyczar
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: keyczar cpp library
+  Keyczar is an open source cryptographic toolkit designed
+  to make it easier and safer for developers to use
+  cryptography in their applications. C++ library
+
+Package: libkeyczar-dev
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: keyczar cpp library devel
+  Keyczar is an open source cryptographic toolkit designed
+  to make it easier and safer for developers to use
+  cryptography in their applications. C++ development headers
+
+Package: python-keyczar-cpp
+Architecture: any
+Depends: ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}, libkeyczar
+Description: keyczar python library
+  Keyczar is an open source cryptographic toolkit designed
+  to make it easier and safer for developers to use
+  cryptography in their applications. SWIG Python bindings
+  cryptography in their applications.
