@@ -18,6 +18,7 @@ BINDIR = "bindir"
 LIBDIR = "libdir"
 INCLUDEDIR = "includedir"
 PYPACKAGE = "pypackage"
+DESTDIR = "DESTDIR"
 
 def AddOptions(opts):
     """ Adds the installer options to the opts.  """
@@ -42,6 +43,7 @@ class Installer:
         self._eprefix = env.get(EPREFIX, self._prefix)
         self._bindir = env.get(BINDIR, os.path.join(self._eprefix, "bin"))
         self._libdir = env.get(LIBDIR, os.path.join(self._eprefix, "lib"))
+        self._destdir = os.path.join('/', os.getenv('DESTDIR', ""))
         self._includedir = env.get(INCLUDEDIR,
                                    os.path.join(self._prefix, "include"))
         self._pypackage = env.get(PYPACKAGE,
@@ -49,6 +51,8 @@ class Installer:
         self._env = env
 
     def Add(self, destdir, name, basedir="", perm=0644):
+        destdir = destdir[1:] if destdir[0] == '/' else destdir
+        destdir = os.path.join(self._destdir, destdir)
         destination = os.path.join(destdir, basedir)
         obj = self._env.Install(destination, name)
         self._env.Alias("install", destination)
